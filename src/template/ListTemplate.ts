@@ -11,7 +11,7 @@ export default class ListTemplate implements DOMList {
     static instance: ListTemplate = new ListTemplate();
 
    private constructor() {
-    this.ul =  document.getElementById('listItems') as HTMLUListElement;n
+    this.ul =  document.getElementById('listItems') as HTMLUListElement;
    }
 
    clear() {
@@ -42,6 +42,16 @@ export default class ListTemplate implements DOMList {
         li.append(label);
 
         const button = document.createElement('button') as HTMLButtonElement;
+        button.className = 'button';
+        button.textContent = "X";
+        li.append(button);
+
+        button.addEventListener('click', ()=> {
+            fullList.removeItem(item.id);
+            this.render(fullList);
+        })
+
+        this.ul.append(li);
     });
    }
 }
